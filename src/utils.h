@@ -26,7 +26,7 @@ string generatePNR(int n)
 
     int randomNo = distribution(rng);
 
-    string pnr = "PNR" + to_string(randomNo);
+    string pnr = std::format("PNR" {} , to_string(randomNo));
 
     return pnr;
 }
