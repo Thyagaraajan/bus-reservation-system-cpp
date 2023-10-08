@@ -55,7 +55,7 @@ void mainMenu()
 {
     int choice;
 
-    while (1)
+    while (true)
     {
         system("cls");
 
@@ -101,7 +101,8 @@ void mainMenu()
 // ADMIN LOGIN
 void adminLogin()
 {
-    string adminUname, adminPass;
+    string adminUname;
+    string adminPass;
 
     system("cls");
 
@@ -130,7 +131,7 @@ void userMenu()
 
     int choice;
 
-    while (1)
+    while (true)
     {
         system("cls");
 
@@ -192,7 +193,7 @@ void adminMenu()
 
     int choice;
 
-    while (1)
+    while (true)
     {
         system("cls");
 
@@ -290,7 +291,7 @@ void viewBookingsMenu()
 
     int choice;
 
-    while (1)
+    while (true)
     {
         system("cls");
 
