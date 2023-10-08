@@ -19,12 +19,9 @@ private:
     string destinationTime;
 
 public:
-    Bus()
+    Bus() : maxSeats(32), bookedSeats(0), busFare(0.0)
     {
         strcpy(busNo, "");
-        maxSeats = 32;
-        bookedSeats = 0;
-        busFare = 0.0;
         strcpy(source, "");
         strcpy(destination, "");
         strcpy(sourceTime, "");
