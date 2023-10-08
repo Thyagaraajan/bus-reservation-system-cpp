@@ -3,7 +3,7 @@
 #include <cstring>
 #include <fstream>
 #include <iomanip>
-
+#include<bits/stdc++.h>
 #include "bus.h"
 #include "ticket.h"
 #include "utils.h"
@@ -86,14 +86,14 @@ void Bus::viewBusDetails()
 {
     system("cls");
 
-    char bNo[10];
+    string bNo;
     int chk = 0;
     fstream busFileStream;
 
     printHeading("VIEW BUS INFO");
     cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Bus Number:-> ";
     cin.ignore();
-    cin.getline(bNo, 10);
+    cin>>bNo;
 
     system("cls");
     printHeading("BUS INFO");
@@ -129,7 +129,7 @@ void Bus::editBus()
 {
     system("cls");
 
-    char bNo[10];
+    string bNo;
     int chk = 0;
 
     fstream busFileStream, tempFileStream;
@@ -137,7 +137,7 @@ void Bus::editBus()
     printHeading("EDIT BUS");
     cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Bus Number:-> ";
     cin.ignore();
-    cin.getline(bNo, 10);
+    cin>>bNo;
 
     busFileStream.open("buses.dat", ios::in | ios::app | ios::binary);
 
@@ -159,16 +159,16 @@ void Bus::editBus()
                 printHeading("EDIT BUS");
 
                 showBusDetails();
-                char s[20], d[20], sTime[20], dTime[20];
+                string s, d, sTime, dTime;
                 double fare;
                 cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Source:-> ";
-                cin.getline(s, 20);
+                cin>>s;
                 cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Destination:-> ";
-                cin.getline(d, 20);
+                cin>>d;
                 cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Source Time:-> ";
-                cin.getline(sTime, 20);
+                cin>>sTime;
                 cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Destination Time:-> ";
-                cin.getline(dTime, 20);
+                cin>>dTime;
                 cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Bus Fare:-> ";
                 cin.ignore();
                 cin >> fare;
@@ -209,7 +209,7 @@ void Bus::deleteBus()
 {
     system("cls");
 
-    char bNo[10];
+    string bNo;
     int chk = 0;
     fstream busFileStream, tempFileStream;
 
