@@ -132,7 +132,8 @@ void Bus::editBus()
     string bNo;
     int chk = 0;
 
-    fstream busFileStream, tempFileStream;
+    fstream busFileStream;
+    fstream tempFileStream;
 
     printHeading("EDIT BUS");
     cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Bus Number:-> ";
