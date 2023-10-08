@@ -38,6 +38,192 @@ void Ticket::displayTicket()
     cout << "\n";
 }
 
+bool Ticket::openBusFile()
+{
+    fstream busFileStream;
+    busFileStream.open("buses.dat", ios::in | ios::app | ios::binary);
+    if (busFileStream.fail())
+    {
+        return false;
+    }
+    busFileStream.close();
+    return true;
+}
+
+// Function to get source and destination from the user
+bool Ticket::getSourceAndDestination(char* from, char* to)
+{
+    cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Source:-> ";
+    cin.ignore();
+    cin.getline(from, 20);
+    cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Destination:-> ";
+    cin.getline(to, 20);
+    return (strlen(from) > 0 && strlen(to) > 0);
+}
+
+// Function to display available buses
+bool Ticket::displayAvailableBuses(const char* from, const char* to)
+{
+    Bus bus;
+    int chk = 0;
+
+    fstream busFileStream;
+    busFileStream.open("buses.dat", ios::in | ios::app | ios::binary);
+
+    if (busFileStream.fail())
+    {
+        cout << "\n\t\t\t\t\t\t\t\t\t\tCan't Open File...!!\n";
+        return false;
+    }
+
+    busFileStream.read((char*)&bus, sizeof(bus));
+    while (!busFileStream.eof())
+    {
+        if (strcmpi(bus.getSource(), from) == 0 && strcmpi(bus.getDestination(), to) == 0)
+        {
+            bus.showBusDetails();
+            chk = 1;
+        }
+        busFileStream.read((char*)&bus, sizeof(bus));
+    }
+
+    busFileStream.close();
+
+    return (chk == 1);
+}
+
+// Function to get the bus number from the user
+bool Ticket::getBusNumber(char* busNo)
+{
+    cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Bus Number:-> ";
+    cin.getline(busNo, 10);
+    return (strlen(busNo) > 0);
+}
+
+// Function to book a seat on the selected bus
+bool Ticket::bookSeat(const char* from, const char* to, const char* busNo)
+{
+    Bus bus;
+    int booked = 0;
+
+    fstream busFileStream, tempFileStream;
+    busFileStream.open("buses.dat", ios::in | ios::app | ios::binary);
+    tempFileStream.open("temp.dat", ios::out | ios::app | ios::binary);
+
+    busFileStream.read((char*)&bus, sizeof(bus));
+    while (!busFileStream.eof())
+    {
+        if (strcmpi(bus.getSource(), from) == 0 && strcmpi(bus.getDestination(), to) == 0 && strcmp(bus.getBusNo(), busNo) == 0)
+        {
+            if (bus.getBookedSeats() >= 32)
+            {
+                return false;
+            }
+            else
+            {
+                bus.setBookedSeats();
+                // Additional seat booking logic can be added here if needed
+                tempFileStream.write((char*)&bus, sizeof(bus));
+                booked = 1;
+            }
+        }
+        else
+        {
+            tempFileStream.write((char*)&bus, sizeof(bus));
+        }
+        busFileStream.read((char*)&bus, sizeof(bus));
+    }
+
+    if (booked == 1)
+    {
+        busFileStream.close();
+        tempFileStream.close();
+        remove("buses.dat");
+        rename("temp.dat", "buses.dat");
+    }
+
+    return true;
+}
+
+// Function to get the customer name from the user
+bool Ticket::getCustomerName(char* customerName)
+{
+    cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Customer Name:-> ";
+    cin.getline(customerName, 20);
+    return (strlen(customerName) > 0);
+}
+
+// Function to generate and save the ticket information
+void Ticket::generateAndSaveTicket(const char* customerName)
+{
+    // Additional ticket generation and saving logic can be added here if needed
+    fstream ticketFileStream;
+    ticketFileStream.open("tickets.dat", ios::out | ios::app | ios::binary);
+    ticketFileStream.write((char*)this, sizeof(*this));
+    ticketFileStream.close();
+
+    system("cls");
+    printHeading("BOOKING DETAILS");
+    displayTicket();
+    cout << "\n\t\t\t\t\t\t\t\t\t\tTicket Booked Successfully...!!\n";
+}
+
+void Ticket::bookTicket()
+{
+    system("cls");
+    char from[20], to[20];
+
+    printHeading("BOOK TICKET");
+
+    if (!openBusFile())
+    {
+        cout << "\n\t\t\t\t\t\t\t\t\t\tCan't Open File...!!\n";
+        return;
+    }
+
+    if (!getSourceAndDestination(from, to))
+    {
+        cout << "\n\t\t\t\t\t\t\t\t\t\tInvalid source or destination.\n";
+        return;
+    }
+
+    system("cls");
+    printHeading("AVAILABLE BUSES");
+
+    if (!displayAvailableBuses(from, to))
+    {
+        cout << "\n\t\t\t\t\t\t\t\t\t\tNo Buses Found...!!\n";
+        return;
+    }
+
+    char busNo[10];
+    if (!getBusNumber(busNo))
+    {
+        cout << "\n\t\t\t\t\t\t\t\t\t\tInvalid bus number.\n";
+        return;
+    }
+
+    if (!bookSeat(from, to, busNo))
+    {
+        cout << "\n\t\t\t\t\t\t\t\t\t\tSeat not available...!!\n";
+        return;
+    }
+
+    system("cls");
+    printHeading("BOOK TICKET");
+
+    char customerName[20];
+    if (!getCustomerName(customerName))
+    {
+        cout << "\n\t\t\t\t\t\t\t\t\t\tInvalid customer name.\n";
+        return;
+    }
+
+    generateAndSaveTicket(customerName);
+}
+
+
+/*
 // BOOK TICKET
 void Ticket::bookTicket()
 {
@@ -53,9 +239,7 @@ void Ticket::bookTicket()
 
     busFileStream.open("buses.dat", ios::in | ios::app | ios::binary);
     if (busFileStream.fail())
-    {
         cout << "\n\t\t\t\t\t\t\t\t\t\tCan't Open File...!!\n";
-    }
 
     else
     {
@@ -101,6 +285,7 @@ void Ticket::bookTicket()
             {
                 if (strcmpi(b.getSource(), from) == 0 && strcmpi(b.getDestination(), to) == 0 && strcmp(b.getBusNo(), bNo) == 0)
                 {
+                    return
                     if (b.getBookedSeats() >= 32)
                     {
                         cout << "\n\t\t\t\t\t\t\t\t\t\tSeat not available...!!\n";
@@ -145,7 +330,7 @@ void Ticket::bookTicket()
         busFileStream.close();
     }
 }
-
+*/
 // CANCEL TICKET
 void Ticket::cancelTicket()
 {
