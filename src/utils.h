@@ -5,6 +5,9 @@
 #include <string>
 #include <ctime>
 #include<random>
+#include <sodium.h>
+#include <botan/system_rng.h>
+
 #include<bits/stdc++.h>
 
 
@@ -18,12 +21,23 @@ void printHeading(const string& header)
     cout << "\t\t\t\t\t\t\t\t\t\t==========================================================\n\n";
 }
 
+void f() 
+{
+  char random_chars[10];
+  randombytes_buf(random_chars, 10); // Compliant
+  uint32_t random_int = randombytes_uniform(10); // Compliant
+
+  uint8_t random_chars[10];
+  Botan::System_RNG system;
+  system.randomize(random_chars, 10); // Compliant
+}
+
 string generatePNR(int n)
 {
 
     string pnr;
 
-    int randomNo = rand() % n;
+    int randomNo = f()% n;
 
     pnr = std::format("PNR" {} , to_string(randomNo));
 
