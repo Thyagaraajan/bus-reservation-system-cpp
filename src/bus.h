@@ -9,7 +9,7 @@ using namespace std;
 class Bus
 {
 private:
-    int maxSeats;
+    int maxSeats=32;
     int bookedSeats=0;
     double busFare=0.0;
     string busNo;
@@ -19,7 +19,7 @@ private:
     string destinationTime;
 
 public:
-    Bus() : maxSeats(32)
+    Bus()
     {
         strcpy(busNo, "");
         strcpy(source, "");
