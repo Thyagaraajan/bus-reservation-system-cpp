@@ -20,11 +20,12 @@ void printHeading(const string& header)
 
 string generatePNR(int n)
 {
-    uniform_int_distribution<int> distribution(0, n - 1);
 
-    int randomNo = distribution(rng);
+    string pnr;
 
-    string pnr = std::format("PNR" {} , to_string(randomNo));
+    int randomNo = rand() % n;
+
+    pnr = std::format("PNR" {} , to_string(randomNo));
 
     return pnr;
 }
