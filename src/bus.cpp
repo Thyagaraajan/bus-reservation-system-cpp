@@ -159,7 +159,10 @@ void Bus::editBus()
                 printHeading("EDIT BUS");
 
                 showBusDetails();
-                string s, d, sTime, dTime;
+                string s;
+                string d;
+                string sTime;
+                string dTime;
                 double fare;
                 cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Source:-> ";
                 cin>>s;
