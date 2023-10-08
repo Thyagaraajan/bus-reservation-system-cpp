@@ -112,9 +112,9 @@ void Ticket::bookTicket()
                     {
                         system("cls");
                         printHeading("BOOK TICKET");
-                        char n[20];
+                        string n;
                         cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Customer Name :-> ";
-                        cin.getline(n, 20);
+                        cin>>n;
                         b.setBookedSeats();
                         generateTicket(n, b);
                         ticketFileStream.open("tickets.dat", ios::out | ios::app | ios::binary);
@@ -264,9 +264,9 @@ void Ticket::editTicket()
                 printHeading("EDIT TICKET");
 
                 displayTicket();
-                char n[20];
+                string n;
                 cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Passenger Name :-> ";
-                cin.getline(n, 20);
+                cin>>n;
                 setName(n);
                 tempFileStream.write((char *)this, sizeof(*this));
 
@@ -279,7 +279,7 @@ void Ticket::editTicket()
             ticketFileStream.read((char *)this, sizeof(*this));
         }
 
-        if (chk = 1)
+        if (chk == 1)
         {
             cout << "\n\t\t\t\t\t\t\t\t\t\tTicket Updated Successfully...!!\n";
         }
