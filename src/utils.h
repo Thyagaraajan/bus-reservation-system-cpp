@@ -20,8 +20,6 @@ void printHeading(const string& header)
 
 string generatePNR(int n)
 {
-    mt19937_64 rng(time(nullptr));
-
     uniform_int_distribution<int> distribution(0, n - 1);
 
     int randomNo = distribution(rng);
