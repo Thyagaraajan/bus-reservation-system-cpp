@@ -9,9 +9,14 @@ using namespace std;
 class Bus
 {
 private:
-    int maxSeats, bookedSeats;
+    int maxSeats;
+    int bookedSeats;
     double busFare;
-    string busNo, source, destination, sourceTime, destinationTime;
+    string busNo;
+    string source; 
+    string destination;
+    string sourceTime;
+    string destinationTime;
 
 public:
     Bus()
