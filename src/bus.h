@@ -10,8 +10,8 @@ class Bus
 {
 private:
     int maxSeats;
-    int bookedSeats;
-    double busFare;
+    int bookedSeats=0;
+    double busFare=0.0;
     string busNo;
     string source; 
     string destination;
@@ -19,7 +19,7 @@ private:
     string destinationTime;
 
 public:
-    Bus() : maxSeats(32), bookedSeats(0), busFare(0.0)
+    Bus() : maxSeats(32)
     {
         strcpy(busNo, "");
         strcpy(source, "");
