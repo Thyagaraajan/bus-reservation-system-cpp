@@ -17,13 +17,13 @@ void printHeading(const string& header)
 
 string generatePNR(int n)
 {
-    srand(time(0));
+    std::mt19937_64 rng(std::time(nullptr));
 
-    string pnr;
+    std::uniform_int_distribution<int> distribution(0, n - 1);
 
-    int randomNo = rand() % n;
+    int randomNo = distribution(rng);
 
-    pnr = "PNR" + to_string(randomNo);
+    std::string pnr = "PNR" + std::to_string(randomNo);
 
     return pnr;
 }
