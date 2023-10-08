@@ -192,7 +192,7 @@ void Bus::editBus()
             busFileStream.read((char *)this, sizeof(*this));
         }
 
-        if (chk = 1)
+        if (chk == 1)
         {
             cout << "\n\t\t\t\t\t\t\t\t\t\tBus Updated Successfully...!!\n";
         }
@@ -215,7 +215,8 @@ void Bus::deleteBus()
 
     string bNo;
     int chk = 0;
-    fstream busFileStream, tempFileStream;
+    fstream busFileStream;
+    fstream tempFileStream;
 
     printHeading("DELETE BUS");
     cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Bus No:-> ";
