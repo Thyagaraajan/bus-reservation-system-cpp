@@ -11,7 +11,7 @@ class Bus
 private:
     int maxSeats, bookedSeats;
     double busFare;
-    char busNo[10], source[20], destination[20], sourceTime[20], destinationTime[20];
+    string busNo, source, destination, sourceTime, destinationTime;
 
 public:
     Bus()
@@ -35,28 +35,28 @@ public:
     void editBus();
 
     // GETTERS
-    char *getBusNo()
+    string getBusNo()
     {
         return busNo;
     }
 
-    char *getSource()
+    string getSource()
     {
 
         return source;
     }
 
-    char *getDestination()
+    string getDestination()
     {
         return destination;
     }
 
-    char *getSourceTime()
+    string getSourceTime()
     {
         return sourceTime;
     }
 
-    char *getDestinationTime()
+    string getDestinationTime()
     {
         return destinationTime;
     }
@@ -87,25 +87,25 @@ public:
         bookedSeats--;
     }
 
-    void setSource(char *s)
+    void setSource(string s)
     {
         if (s && s[0])
             strcpy(source, s);
     }
 
-    void setDestination(char *d)
+    void setDestination(string d)
     {
         if (d && d[0])
             strcpy(destination, d);
     }
 
-    void setSourceTime(char *s)
+    void setSourceTime(string s)
     {
         if (s && s[0])
             strcpy(sourceTime, s);
     }
 
-    void setDestinationTime(char *d)
+    void setDestinationTime(string d)
     {
         if (d && d[0])
             strcpy(destinationTime, d);
