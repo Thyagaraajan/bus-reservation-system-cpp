@@ -43,11 +43,14 @@ void Ticket::bookTicket()
 {
     system("cls");
 
-    char from[20], to[20];
+    string from;
+    string to;
     int chk = 0;
 
     Bus b;
-    fstream busFileStream, ticketFileStream, tempFileStream;
+    fstream busFileStream;
+    fstream ticketFileStream;
+    fstream tempFileStream;
 
     printHeading("BOOK TICKET");
 
@@ -59,9 +62,9 @@ void Ticket::bookTicket()
     {
         cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Source:-> ";
         cin.ignore();
-        cin.getline(from, 20);
+        cin>>from;
         cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Destination:-> ";
-        cin.getline(to, 20);
+        cin>>to;
 
         system("cls");
         printHeading("AVAILABLE BUSES");
@@ -150,15 +153,18 @@ void Ticket::cancelTicket()
 {
     system("cls");
 
-    char pnr[10];
+    string pnr;
     int chk = 0;
 
-    fstream busFileStream, ticketFileStream, tempFileStream, busTempFileStream;
+    fstream busFileStream;
+    fstream ticketFileStream;
+    fstream tempFileStream;
+    fstream busTempFileStream;
 
     printHeading("CANCEL TICKET");
     cout << "\n\t\t\t\t\t\t\t\t\t\tEnter PNR Number:-> ";
     cin.ignore();
-    cin.getline(pnr, 10);
+    cin>>pnr;
 
     ticketFileStream.open("tickets.dat", ios::in | ios::app | ios::binary);
     tempFileStream.open("temp.dat", ios::out | ios::app | ios::binary);
@@ -227,15 +233,16 @@ void Ticket::editTicket()
 {
     system("cls");
 
-    char pnr[10];
+    string pnr;
     int chk = 0;
 
-    fstream ticketFileStream, tempFileStream;
+    fstream ticketFileStream;
+    fstream tempFileStream;
 
     printHeading("EDIT TICKET");
     cout << "\n\t\t\t\t\t\t\t\t\t\tEnter PNR Number:-> ";
     cin.ignore();
-    cin.getline(pnr, 10);
+    cin>>pnr;
 
     ticketFileStream.open("tickets.dat", ios::in | ios::app | ios::binary);
 
@@ -293,14 +300,14 @@ void Ticket::showTicketsByPNR()
 {
     system("cls");
 
-    char pnr[10];
+    string pnr;
     int chk = 0;
     fstream ticketFileStream;
 
     printHeading("SHOW BOOKINGS BY PNR");
     cout << "\n\t\t\t\t\t\t\t\t\t\tEnter PNR Number:-> ";
     cin.ignore();
-    cin.getline(pnr, 10);
+    cin>>pnr;
 
     system("cls");
 
@@ -337,14 +344,14 @@ void Ticket::showTicketsByName()
 {
     system("cls");
 
-    char n[20];
+    string n;
     int chk = 0;
     fstream ticketFileStream;
 
     printHeading("SHOW BOOKINGS BY NAME");
     cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Passenger Name:-> ";
     cin.ignore();
-    cin.getline(n, 20);
+    cin>>n;
 
     system("cls");
 
@@ -381,14 +388,14 @@ void Ticket::showTicketsByBus()
 {
     system("cls");
 
-    char bNo[10];
+    string bNo;
     int chk = 0;
     fstream ticketFileStream;
 
     printHeading("SHOW BOOKINGS BY NAME");
     cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Bus Number:-> ";
     cin.ignore();
-    cin.getline(bNo, 10);
+    cin>>bNo;
 
     system("cls");
 
@@ -425,14 +432,14 @@ void Ticket::showTicketsBySource()
 {
     system("cls");
 
-    char s[20];
+    string s;
     int chk = 0;
     fstream ticketFileStream;
 
     printHeading("SHOW BOOKINGS BY SOURCE");
     cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Source:-> ";
     cin.ignore();
-    cin.getline(s, 20);
+    cin>>s;
 
     system("cls");
 
@@ -469,14 +476,14 @@ void Ticket::showTicketsByDestination()
 {
     system("cls");
 
-    char d[20];
+    string d;
     int chk = 0;
     fstream ticketFileStream;
 
     printHeading("SHOW BOOKINGS BY DESTINATION");
     cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Destination:-> ";
     cin.ignore();
-    cin.getline(d, 20);
+    cin>>d;
 
     system("cls");
 
