@@ -85,11 +85,11 @@ void Ticket::bookTicket()
         }
         else
         {
-            char bNo[10];
+            string bNo;
             int booked = 0;
 
             cout << "\n\t\t\t\t\t\t\t\t\t\tEnter Bus Number:-> ";
-            cin.getline(bNo, 10);
+            cin>>bNo;
 
             busFileStream.open("buses.dat", ios::in | ios::app | ios::binary);
             tempFileStream.open("temp.dat", ios::out | ios::app | ios::binary);
