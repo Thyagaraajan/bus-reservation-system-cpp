@@ -9,7 +9,9 @@
 class Ticket
 {
 private:
-    char name[20], pnrNo[10], date[20];
+    string name;
+    string pnrNo;
+    string date;
     Bus bus;
 
 public:
@@ -26,23 +28,23 @@ public:
     void showAllTickets();
 
     // GETTERS
-    char *getName()
+    string getName()
     {
         return name;
     }
 
-    char *getPnrNo()
+    string getPnrNo()
     {
         return pnrNo;
     }
 
-    char *getDate()
+    string getDate()
     {
         return date;
     }
 
     // SETTERS
-    void setName(char *n)
+    void setName(string n)
     {
         if (n && n[0])
             strcpy(name, n);
