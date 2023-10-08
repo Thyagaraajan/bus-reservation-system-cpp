@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <string>
 #include <ctime>
+#include<random>
+#include<bits/stdc++.h>
 
 using namespace std;
 
@@ -17,13 +19,13 @@ void printHeading(const string& header)
 
 string generatePNR(int n)
 {
-    std::mt19937_64 rng(std::time(nullptr));
+    mt19937_64 rng(time(nullptr));
 
-    std::uniform_int_distribution<int> distribution(0, n - 1);
+    uniform_int_distribution<int> distribution(0, n - 1);
 
     int randomNo = distribution(rng);
 
-    std::string pnr = "PNR" + std::to_string(randomNo);
+    string pnr = "PNR" + to_string(randomNo);
 
     return pnr;
 }
