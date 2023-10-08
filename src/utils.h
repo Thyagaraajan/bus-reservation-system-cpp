@@ -32,7 +32,7 @@ string generatePNR(int n)
 
 string getCurrentDate()
 {
-    time_t t = time(NULL);
+    time_t t = time(nullptr);
     tm *tPtr = localtime(&t);
 
     return to_string(tPtr->tm_mday) + "-" + to_string((tPtr->tm_mon) + 1) + "-" + to_string((tPtr->tm_year) + 1900);
