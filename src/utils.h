@@ -23,11 +23,11 @@ void printHeading(const string& header)
 
 void f() 
 {
-  char random_chars[10];
+  string random_chars
   randombytes_buf(random_chars, 10); // Compliant
   uint32_t random_int = randombytes_uniform(10); // Compliant
 
-  uint8_t random_chars[10];
+  uint8_t string random_chars;
   Botan::System_RNG system;
   system.randomize(random_chars, 10); // Compliant
 }
