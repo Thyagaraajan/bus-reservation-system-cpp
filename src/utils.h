@@ -11,7 +11,6 @@
 #include<bits/stdc++.h>
 
 
-using namespace std;
 
 void printHeading(const string& header)
 {
