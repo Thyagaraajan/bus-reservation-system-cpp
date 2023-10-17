@@ -7,6 +7,7 @@
 
 using namespace std;
 
+
 // GLOBAL FUNCTION
 void mainMenu();
 void userMenu();
