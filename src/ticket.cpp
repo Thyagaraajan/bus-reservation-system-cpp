@@ -8,7 +8,7 @@
 #include "bus.h"
 #include "utils.h"
 
-using namespace std;
+
 
 // GENERATE TICKET
 void Ticket::generateTicket(char *n, Bus b)
